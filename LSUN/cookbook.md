@@ -37,3 +37,22 @@ Downloaded file includes lmdb file. To extract the file, you need to install lmd
 ```bash
 pip install lmdb
 ```
+
+If you experience **UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb8 in position 5: invalid start byte** error, change **{YOUR_PYTHON_PATH}/lib/site-packages/pip/compat/__init__.py** file as shown below.
+
+```bash
+return s.decode('utf-8')
+
+to
+
+return s.decode('cp949')
+```
+
+This is not permanenet solution for the error. However, it works!
+
+You can use original author's extraction code, however, for version compatibility, I created **lmdb_extractor.py** based on original code.
+
+For example, when you want to extract bridge_train_lmdb use this code.
+```bash
+python lmdb_extractor.py ./bridge_train_lmdb --out_dir=./bridge_train_image --flat
+```
