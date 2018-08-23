@@ -19,34 +19,21 @@ This instruction is for Windows 10 user using WSL to download LSUN dataset.
 
 Original LSUN Dataset documentation and demo codes are here: [GitHub](https://github.com/fyu/lsun)
 
-### Demo code
-
-#### Dependency
-
-Install Python
-
-Install Python dependency: numpy, lmdb, opencv
-
-#### Usage:
-
-View the lmdb content
-
+Please make sure you have cURL installed
 ```bash
-python2.7 data.py view <image db path>
+# Download the whole latest data set
+python2.7 download.py
+# Download the whole latest data set to <data_dir>
+python2.7 download.py -o <data_dir>
+# Download data for bedroom
+python2.7 download.py -c bedroom
+# Download testing set
+python2.7 download.py -c test
 ```
 
-Export the images to a folder
+## Extract dataset
+Downloaded file includes lmdb file. To extract the file, you need to install lmdb library.
 
 ```bash
-python2.7 data.py export <image db path> --out_dir <output directory>
+pip install lmdb
 ```
-
-#### Example:
-
-Export all the images in valuation sets in the current folder to a
-"data"
-subfolder.
-
-```bash
-python2.7 data.py export *_val_lmdb --out_dir data
-
